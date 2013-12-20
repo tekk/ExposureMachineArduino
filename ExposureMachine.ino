@@ -27,7 +27,7 @@ void setup() {
 void loop() {
   int pot = analogRead(POTENCIOMETER_PIN);
   lcd.setCursor(0, 1);
-  VypisCas(pot);
+  ShowTime(pot);
   delay(100);
   
   if (digitalRead(START_BTN) == LOW) StartExposure(pot);  
@@ -48,7 +48,7 @@ void StartExposure(int sek)
     lcd.print((int)(((double)i / (double)sek) * 100.0));
     lcd.print("%");
     lcd.setCursor(10, 1);
-    VypisCas(timeLeft);
+    ShowTime(timeLeft);
     for (int t = 0; t < 10; t++)
     {
       if (digitalRead(STOP_BTN) == LOW)
@@ -83,7 +83,7 @@ void StartExposure(int sek)
   lcd.print("Exposure time:");
 }
 
-void VypisCas(int sek)
+void ShowTime(int sek)
 {
   char strOut[3];
   formatTimeDigits(strOut, sek / 60);
